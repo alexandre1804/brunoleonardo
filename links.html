@@ -1,0 +1,494 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Bruno Leonardo | Links</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,400&family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet">
+<style>
+:root {
+  --gold: #c9a84c;
+  --gold-light: #f0d080;
+  --gold-dark: #8b6914;
+  --black: #080808;
+  --white: #f5f0e8;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+html, body {
+  min-height: 100%;
+  background: var(--black);
+  color: var(--white);
+  font-family: 'Montserrat', sans-serif;
+  overflow-x: hidden;
+}
+
+/* ── CANVAS BG ── */
+#bg-canvas {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+}
+
+/* ── WRAPPER ── */
+.wrapper {
+  position: relative;
+  z-index: 1;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 48px 20px 60px;
+  gap: 0;
+}
+
+/* ── AVATAR ── */
+.avatar-ring {
+  width: 108px;
+  height: 108px;
+  border-radius: 50%;
+  background: conic-gradient(var(--gold-dark), var(--gold-light), var(--gold), var(--gold-dark));
+  padding: 3px;
+  animation: spin-ring 8s linear infinite;
+  margin-bottom: 22px;
+  flex-shrink: 0;
+}
+@keyframes spin-ring {
+  to { transform: rotate(360deg); }
+}
+.avatar-inner {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  background: radial-gradient(135deg, #1a1200 0%, #0d0d0d 60%, #080808 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Playfair Display', serif;
+  font-size: 2.2rem;
+  font-weight: 900;
+  background: #0d0d0d;
+  position: relative;
+  overflow: hidden;
+}
+.avatar-inner::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at 35% 35%, rgba(201,168,76,0.18), transparent 65%);
+}
+.monogram {
+  background: linear-gradient(135deg, var(--gold-dark), var(--gold-light), var(--gold));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  position: relative;
+  z-index: 1;
+  letter-spacing: -2px;
+}
+
+/* ── NAME ── */
+.name {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(2rem, 8vw, 2.8rem);
+  font-weight: 900;
+  line-height: 1;
+  text-align: center;
+  background: linear-gradient(135deg, var(--gold-dark) 0%, var(--gold-light) 50%, var(--gold) 100%);
+  background-size: 200% 200%;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  animation: shimmer-name 4s ease infinite;
+  margin-bottom: 6px;
+}
+@keyframes shimmer-name {
+  0%   { background-position: 0% 50%; }
+  50%  { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+.name span {
+  display: block;
+  font-style: italic;
+  font-size: 0.88em;
+}
+
+/* ── SUBTITLE ── */
+.subtitle {
+  font-size: 0.6rem;
+  letter-spacing: 5px;
+  text-transform: uppercase;
+  color: rgba(201,168,76,0.55);
+  text-align: center;
+  margin-bottom: 14px;
+}
+
+/* ── FLAGS ── */
+.flags {
+  display: flex;
+  gap: 6px;
+  margin-bottom: 8px;
+  font-size: 1.3rem;
+}
+
+/* ── WAVE ── */
+.wave {
+  display: flex;
+  align-items: flex-end;
+  gap: 3px;
+  height: 20px;
+  margin-bottom: 32px;
+}
+.wave span {
+  display: block;
+  width: 3px;
+  border-radius: 2px;
+  background: var(--gold);
+  animation: eq 1.3s ease-in-out infinite;
+  opacity: 0.65;
+}
+.wave span:nth-child(1){ height:5px;  animation-delay:0s; }
+.wave span:nth-child(2){ height:13px; animation-delay:.1s; }
+.wave span:nth-child(3){ height:19px; animation-delay:.2s; }
+.wave span:nth-child(4){ height:20px; animation-delay:.3s; }
+.wave span:nth-child(5){ height:15px; animation-delay:.4s; }
+.wave span:nth-child(6){ height:9px;  animation-delay:.5s; }
+.wave span:nth-child(7){ height:14px; animation-delay:.6s; }
+@keyframes eq {
+  0%,100% { transform: scaleY(.35); opacity:.35; }
+  50%      { transform: scaleY(1);   opacity:.9; }
+}
+
+/* ── DIVIDER ── */
+.divider {
+  width: 60px;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--gold), transparent);
+  margin: 0 auto 32px;
+  animation: glow-line 2.5s ease-in-out infinite;
+}
+@keyframes glow-line {
+  0%,100% { opacity:.4; box-shadow: none; }
+  50%      { opacity:1; box-shadow: 0 0 10px var(--gold); }
+}
+
+/* ── LINKS ── */
+.links {
+  width: 100%;
+  max-width: 420px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  margin-bottom: 36px;
+}
+
+.link-card {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 16px 22px;
+  background: rgba(201,168,76,0.04);
+  border: 1px solid rgba(201,168,76,0.18);
+  border-radius: 3px;
+  text-decoration: none;
+  color: var(--white);
+  position: relative;
+  overflow: hidden;
+  transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease, background 0.25s ease;
+}
+.link-card::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(90deg, rgba(201,168,76,0.0), rgba(201,168,76,0.08), rgba(201,168,76,0.0));
+  transform: translateX(-100%);
+  transition: transform 0.45s ease;
+}
+.link-card:hover::before { transform: translateX(100%); }
+.link-card:hover {
+  transform: translateY(-3px) scale(1.015);
+  border-color: rgba(201,168,76,0.5);
+  box-shadow: 0 10px 36px rgba(201,168,76,0.14);
+  background: rgba(201,168,76,0.08);
+}
+.link-card:active { transform: scale(0.98); }
+
+.link-icon {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: rgba(201,168,76,0.1);
+  border: 1px solid rgba(201,168,76,0.25);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.15rem;
+  flex-shrink: 0;
+  transition: background 0.25s, box-shadow 0.25s;
+}
+.link-card:hover .link-icon {
+  background: rgba(201,168,76,0.18);
+  box-shadow: 0 0 16px rgba(201,168,76,0.2);
+}
+
+.link-text { flex: 1; }
+.link-label {
+  font-size: 0.58rem;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: rgba(201,168,76,0.5);
+  margin-bottom: 2px;
+}
+.link-name {
+  font-size: 0.88rem;
+  font-weight: 600;
+  color: var(--white);
+  letter-spacing: 0.3px;
+}
+
+.link-arrow {
+  font-size: 0.85rem;
+  color: rgba(201,168,76,0.4);
+  transition: color 0.25s, transform 0.25s;
+}
+.link-card:hover .link-arrow {
+  color: var(--gold);
+  transform: translateX(4px);
+}
+
+/* highlight card */
+.link-card.primary {
+  background: linear-gradient(135deg, rgba(201,168,76,0.12) 0%, rgba(201,168,76,0.04) 100%);
+  border-color: rgba(201,168,76,0.35);
+}
+
+/* wa green */
+.link-card.wa .link-icon { background: rgba(37,211,102,0.1); border-color: rgba(37,211,102,0.3); }
+.link-card.wa:hover .link-icon { background: rgba(37,211,102,0.2); box-shadow: 0 0 14px rgba(37,211,102,0.2); }
+.link-card.wa .link-arrow { color: rgba(37,211,102,0.4); }
+.link-card.wa:hover .link-arrow { color: #25d366; }
+
+/* ── FOOTER ── */
+.footer {
+  font-size: 0.52rem;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: rgba(201,168,76,0.25);
+  text-align: center;
+}
+
+/* ── STAGGER ANIMATION ── */
+.link-card {
+  opacity: 0;
+  transform: translateY(20px);
+  animation: card-in 0.5s ease forwards;
+}
+.link-card:nth-child(1){ animation-delay: 0.1s; }
+.link-card:nth-child(2){ animation-delay: 0.2s; }
+.link-card:nth-child(3){ animation-delay: 0.3s; }
+.link-card:nth-child(4){ animation-delay: 0.4s; }
+.link-card:nth-child(5){ animation-delay: 0.5s; }
+@keyframes card-in {
+  to { opacity:1; transform:translateY(0); }
+}
+
+.avatar-ring, .name, .subtitle, .flags, .wave, .divider {
+  opacity: 0;
+  animation: fade-up 0.6s ease forwards;
+}
+.avatar-ring  { animation-delay: 0s; }
+.name         { animation-delay: 0.15s; }
+.subtitle     { animation-delay: 0.22s; }
+.flags        { animation-delay: 0.28s; }
+.wave         { animation-delay: 0.34s; }
+.divider      { animation-delay: 0.4s; }
+@keyframes fade-up {
+  from { opacity:0; transform:translateY(16px); }
+  to   { opacity:1; transform:translateY(0); }
+}
+</style>
+</head>
+<body>
+
+<canvas id="bg-canvas"></canvas>
+
+<div class="wrapper">
+
+  <!-- Avatar -->
+  <div class="avatar-ring">
+    <div class="avatar-inner">
+      <span class="monogram">BL</span>
+    </div>
+  </div>
+
+  <!-- Name -->
+  <h1 class="name">Bruno<span>Leonardo</span></h1>
+  <p class="subtitle">Cantor &amp; Saxofonista</p>
+
+  <!-- Flags -->
+  <div class="flags">
+    <span>🇧🇷</span><span>🇵🇹</span><span>🇫🇷</span><span>🇩🇪</span><span>🇪🇸</span>
+  </div>
+
+  <!-- Equalizer wave -->
+  <div class="wave">
+    <span></span><span></span><span></span><span></span>
+    <span></span><span></span><span></span>
+  </div>
+
+  <div class="divider"></div>
+
+  <!-- Links -->
+  <div class="links">
+
+    <a href="https://brunoleonardo.vercel.app/" target="_blank" class="link-card primary">
+      <div class="link-icon">🎵</div>
+      <div class="link-text">
+        <div class="link-label">Site Oficial</div>
+        <div class="link-name">brunoleonardo.vercel.app</div>
+      </div>
+      <span class="link-arrow">→</span>
+    </a>
+
+    <a href="https://youtube.com/@cantorbrunoleonardo4080" target="_blank" class="link-card">
+      <div class="link-icon">▶</div>
+      <div class="link-text">
+        <div class="link-label">Canal YouTube</div>
+        <div class="link-name">@cantorbrunoleonardo4080</div>
+      </div>
+      <span class="link-arrow">→</span>
+    </a>
+
+    <a href="https://www.instagram.com/cantorbrunoleonardo" target="_blank" class="link-card">
+      <div class="link-icon">📷</div>
+      <div class="link-text">
+        <div class="link-label">Instagram</div>
+        <div class="link-name">@cantorbrunoleonardo</div>
+      </div>
+      <span class="link-arrow">→</span>
+    </a>
+
+    <a href="https://wa.me/5531989688134" target="_blank" class="link-card wa">
+      <div class="link-icon">💬</div>
+      <div class="link-text">
+        <div class="link-label">WhatsApp Brasil</div>
+        <div class="link-name">(31) 9 8968-8134</div>
+      </div>
+      <span class="link-arrow">→</span>
+    </a>
+
+    <a href="https://wa.me/351912262606" target="_blank" class="link-card wa">
+      <div class="link-icon">💬</div>
+      <div class="link-text">
+        <div class="link-label">WhatsApp Portugal</div>
+        <div class="link-name">+351 912 262 606</div>
+      </div>
+      <span class="link-arrow">→</span>
+    </a>
+
+  </div>
+
+  <p class="footer">© 2025 Bruno Leonardo · Todos os direitos reservados</p>
+
+</div>
+
+<script>
+// Particles + floating notes on canvas
+const canvas = document.getElementById('bg-canvas');
+const ctx = canvas.getContext('2d');
+const notes = ['♩','♪','♫','♬'];
+
+let W, H, particles, floaters;
+
+function resize() {
+  W = canvas.width  = window.innerWidth;
+  H = canvas.height = window.innerHeight;
+}
+
+function initParticles() {
+  particles = Array.from({length: 55}, () => ({
+    x: Math.random() * W,
+    y: Math.random() * H,
+    r: 0.6 + Math.random() * 1.8,
+    speed: 0.18 + Math.random() * 0.4,
+    opacity: 0.1 + Math.random() * 0.35,
+    drift: (Math.random() - 0.5) * 0.3,
+  }));
+  floaters = Array.from({length: 10}, () => ({
+    x: Math.random() * W,
+    y: H + 40,
+    note: notes[Math.floor(Math.random() * notes.length)],
+    speed: 0.4 + Math.random() * 0.7,
+    opacity: 0,
+    size: 11 + Math.random() * 10,
+    drift: (Math.random() - 0.5) * 0.6,
+    delay: Math.random() * 400,
+  }));
+}
+
+let frame = 0;
+function draw() {
+  ctx.clearRect(0, 0, W, H);
+
+  // Radial glow center
+  const grd = ctx.createRadialGradient(W/2, H*0.35, 0, W/2, H*0.35, W*0.55);
+  grd.addColorStop(0, 'rgba(201,168,76,0.055)');
+  grd.addColorStop(1, 'rgba(0,0,0,0)');
+  ctx.fillStyle = grd;
+  ctx.fillRect(0, 0, W, H);
+
+  // Gold particles floating up
+  particles.forEach(p => {
+    p.y -= p.speed;
+    p.x += p.drift;
+    if (p.y < -4) { p.y = H + 4; p.x = Math.random() * W; }
+    ctx.beginPath();
+    ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
+    ctx.fillStyle = `rgba(201,168,76,${p.opacity})`;
+    ctx.fill();
+  });
+
+  // Floating music notes
+  frame++;
+  floaters.forEach(f => {
+    if (frame < f.delay) return;
+    f.y -= f.speed;
+    f.x += f.drift;
+    f.opacity = Math.min(f.opacity + 0.008, 0.45);
+    if (f.y < -30) {
+      f.y = H + 30;
+      f.x = Math.random() * W;
+      f.opacity = 0;
+      f.note = notes[Math.floor(Math.random() * notes.length)];
+      f.delay = 0;
+    }
+    ctx.font = `${f.size}px serif`;
+    ctx.fillStyle = `rgba(201,168,76,${f.opacity})`;
+    ctx.fillText(f.note, f.x, f.y);
+  });
+
+  requestAnimationFrame(draw);
+}
+
+resize();
+initParticles();
+draw();
+window.addEventListener('resize', () => { resize(); initParticles(); });
+
+// Tilt on card hover (desktop)
+document.querySelectorAll('.link-card').forEach(card => {
+  card.addEventListener('mousemove', e => {
+    const r = card.getBoundingClientRect();
+    const x = ((e.clientX - r.left) / r.width  - 0.5) * 6;
+    const y = ((e.clientY - r.top)  / r.height - 0.5) * 6;
+    card.style.transform = `translateY(-3px) scale(1.015) perspective(600px) rotateX(${-y}deg) rotateY(${x}deg)`;
+  });
+  card.addEventListener('mouseleave', () => { card.style.transform = ''; });
+});
+</script>
+</body>
+</html>
